@@ -94,5 +94,8 @@ while True:
     if msg.lower() =='!opensource': # If clippybot is asked about open source
         irc.send ('PRIVMSG '+chan+' : http://media-cache-ak0.pinimg.com/736x/08/65/ba/0865bab5cbdc460b42e43991b99874d8.jpg\r\n')
 
+    if msg.lower()=='!google': #If clippybot is asked for a search engine
+        irc.send ('You mean this? www.bing.com\r\n')
+
     if msg.lower()=='!clippybot -help': #Lists clippybot's commands
-        irc.send ('PRIVMSG '+ chan +' : hello '+botnick+', !clippybot, !microsoft, !gates, !linux, !opensource,\r\n')
+        irc.send ('PRIVMSG '+ chan +' : hello '+botnick+', !clippybot, !microsoft, !gates, !linux, !opensource, !google\r\n')
