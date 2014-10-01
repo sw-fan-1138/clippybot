@@ -18,3 +18,4 @@ hello clippybot
 !gates
 !linux
 !opensource (links to a funny poster)
+!google (links to bing)
