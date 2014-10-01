@@ -5,7 +5,7 @@ import time
 
 # Some basic variables used to configure the bot
 server = 'irc.freenode.net' # Server
-debug = False # For debug mode
+debug = True # For debug mode
 botnick = 'clippybot' # Bot's nick
 
 if debug == True: #Check if Debug is True
@@ -14,16 +14,16 @@ elif debug == False: #Check if debus is false
     chan = '#pumpingstationone'
 
 def ping(): # This is our first function! It will respond to server Pings.
-  ircsock.send('PONG ' + ircmsg.split()[1] + '\r\n') #Send back a PONG
+  irc.send('PONG ' + ircmsg.split()[1] + '\r\n') #Send back a PONG
 
 def sendmsg(chan , msg): # This is the send message function, it simply sends messages to the channel.
-  ircsock.send('PRIVMSG '+ chan +' :'+ msg +'\n')
+  irc.send('PRIVMSG '+ chan +' :'+ msg +'\n')
 
 def joinchan(chan): # This function is used to join channels.
   irc.send('JOIN '+ chan +'\n')
 
-def hello(newnick): # This function responds to a user that inputs 'Hello Mybot'
-  irc.send('PRIVMSG '+ chan +' :Hi! you want some help with that?\n')
+def hello(newnick): # This function responds to a user that inputs 'Hello clippybot'
+  irc.send('PRIVMSG '+chan+' :Hi! '+newnick+' you want some help with that?\n')
 
 # Some basic variables used to configure the bot
 irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -55,6 +55,7 @@ while True:
         continue
 
     who = data[0]
+    #nick = who[1:]
     cmd = data[1]
     channel = data[2]
     msg = data[3:]
@@ -64,8 +65,8 @@ while True:
     if debug == True:
         print 'THE MESSAGE WAS', msg
 
-    if msg.lower() =='hello '+botnick+'':# If we can find "Hello clippybot"
-        hello()
+    #if msg.lower() =='hello '+botnick+'':# If we can find "Hello   clippybot"
+        #hello(who)
 
     if msg.lower() =='KICK':# If clippybot is kicked from the channel
       irc.send ('JOIN '+ chan +'\r\n')
@@ -94,8 +95,8 @@ while True:
     if msg.lower() =='!opensource': # If clippybot is asked about open source
         irc.send ('PRIVMSG '+chan+' : http://media-cache-ak0.pinimg.com/736x/08/65/ba/0865bab5cbdc460b42e43991b99874d8.jpg\r\n')
 
-    if msg.lower()=='!google': #If clippybot is asked for a search engine
-        irc.send ('You mean this? www.bing.com\r\n')
+    if msg.lower() =='!google': #If clippybot is asked for a search engine
+        irc.send ('PRIVMSG '+chan+' :You mean this? www.bing.com\r\n')
 
-    if msg.lower()=='!clippybot -help': #Lists clippybot's commands
-        irc.send ('PRIVMSG '+ chan +' : hello '+botnick+', !clippybot, !microsoft, !gates, !linux, !opensource, !google\r\n')
+    if msg.lower() =='!clippybot -help': #Lists clippybot's commands
+        irc.send ('PRIVMSG '+ chan +' : !clippybot, !microsoft, !gates, !linux, !opensource, !google\r\n')
