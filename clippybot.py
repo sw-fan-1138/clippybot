@@ -5,7 +5,7 @@ import time
 
 # Some basic variables used to configure the bot
 server = 'irc.freenode.net' # Server
-debug = True # For debug mode
+debug = False # For debug mode
 botnick = 'clippybot' # Bot's nick
 
 if debug == True: #Check if Debug is True
