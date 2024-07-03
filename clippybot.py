@@ -43,10 +43,7 @@ while True:
     if data == '':
         break
     data = data.split()
-
-#[':jackhholmes!~jackhholm@c-24-1-147-220.hsd1.in.comcast.net', 'PRIVMSG', '#bottesting', ':hi']
-
-
+    
     if data[0] == 'PING':
         print data
         irc.send ('PONG ' + data[ 1 ] + '\r\n')
