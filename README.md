@@ -1,7 +1,7 @@
 clippybot
 =========
 
-A MS propaganda IRC bot
+A MS IRC bot
 
 To run:
 
